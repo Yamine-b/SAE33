@@ -9,23 +9,28 @@ app.set('view engine', 'ejs');
 
 // index page 
 app.get('/', function(req, res) {
-    var mascots = [
-        { name: 'Sammy', organization: "DigitalOcean", birth_year: 2012},
-        { name: 'Tux', organization: "Linux", birth_year: 1996},
-        { name: 'Moby Dock', organization: "Docker", birth_year: 2013}
-    ];
-    var tagline = "No programming concept is complete without a cute animal mascot.";
-
     res.render('page/index', {
-        mascots: mascots,
-        tagline: tagline
     });
 });
+
+
+app.get('/login', (req, res) => {
+    res.render('page/login');
+  });
 
 // about page
 app.get('/about', function(req, res) {
     res.render('page/about');
 });
+
+app.post('/login', (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+  
+    // Vérifiez les informations d'identification de l'utilisateur ici
+    // Si les informations sont correctes, redirigez l'utilisateur vers la page d'accueil
+    // Sinon, affichez un message d'erreur
+  });
 
 app.listen(8080);
 console.log('8080 is the magic port');

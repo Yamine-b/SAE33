@@ -1,0 +1,41 @@
+
+    /* Appliquer un fond d'écran vert clair et ajouter une image de plante en arrière-plan */
+body {
+background-color: #eaf1e3;
+background-image: url('https://i.imgur.com/5oBY7vM.jpg');
+background-size: cover;
+background-position: center;
+}
+
+/* Centrer le formulaire et lui donner un arrière-plan blanc */
+form {
+max-width: 400px;
+margin: 50px auto;
+padding: 20px;
+background-color: #fff;
+border-radius: 5px;
+}
+
+/* Appliquer une police de caractères verte et une bordure verte aux champs de formulaire */
+input {
+font-family: 'Roboto', sans-serif;
+border: 2px solid #96d196;
+color: #96d196;
+}
+
+/* Modifier le bouton de soumission pour qu'il ait un arrière-plan vert et une bordure blanche */
+input[type='submit'] {
+background-color: #96d196;
+border: 2px solid #fff;
+color: #fff;
+font-weight: bold;
+cursor: pointer;
+}
+
+/* Appliquer une bordure verte aux étiquettes */
+label {
+border-bottom: 2px solid #96d196;
+color: #96d196;
+display: block;
+margin-bottom: 10px;
+}

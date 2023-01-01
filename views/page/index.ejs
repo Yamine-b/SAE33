@@ -1,32 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include('../assets/head'); %>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlantaNet</title>
 </head>
-<body class="container">
+<body>
 
-    <header>
-        <%- include('../assets/header'); %>
-    </header>
+    <style>
+        html {
+            background: rgb(125,180,58);
+            background: linear-gradient(90deg, rgba(125,180,58,1) 0%, rgba(99,253,29,1) 50%, rgba(69,252,95,1) 100%);
+            }
+            h1 {
+                padding-top: 15%; 
+                font-family: "Georgia", serif;
+                text-align: center; /* centre le texte */
+                color: #fff; /* met la couleur du texte en blanc */
+  }
 
-    <main>
-        <div class="jumbotron">
-            <h1>Top Mascots</h1>
-            <p><%= tagline %></p>
-            <ul>
-                <% mascots.forEach(function(mascot) { %>
-                    <li>
-                        <strong><%= mascot.name %></strong>
-                        representing <%= mascot.organization %>, born <%= mascot.birth_year %>
-                    </li>
-                <% }); %>
-            </ul>
-        </div>
-    </main>
+        
+    </style>
 
-    <footer>
-        <%- include('../assets/footer'); %>
-    </footer>
+<h1> PLANTANET</h1>
 
 </body>
 </html>
