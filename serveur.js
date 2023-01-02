@@ -13,24 +13,15 @@ app.get('/', function(req, res) {
     });
 });
 
-
-app.get('/login', (req, res) => {
-    res.render('page/login');
+app.get('/signin', function(req, res) {
+  res.render('page/signin', {
   });
+});
 
 // about page
 app.get('/about', function(req, res) {
     res.render('page/about');
 });
-
-app.post('/login', (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-  
-    // Vérifiez les informations d'identification de l'utilisateur ici
-    // Si les informations sont correctes, redirigez l'utilisateur vers la page d'accueil
-    // Sinon, affichez un message d'erreur
-  });
 
 app.listen(8080);
 console.log('8080 is the magic port');
