@@ -1,0 +1,13 @@
+{
+    "java.debug.settings.onBuildFailureProceed": true,
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\yamin\\Downloads\\jSerialComm-2.9.3.jar",
+        "c:\\Users\\yamin\\Downloads\\jssc-2.9.4.jar",
+        "c:\\Users\\yamin\\Downloads\\rs-java-lang-0.1.5.jar",
+        "c:\\Users\\yamin\\Downloads\\rxtx-2.2.2.jar",
+        "c:\\Users\\yamin\\Downloads\\mysql-connector-java-8.0.30.jar",
+        "c:\\Users\\yamin\\Downloads\\protobuf-java-3.19.4.jar",
+        "c:\\Users\\yamin\\Downloads\\mckoi1.0.6\\mckoidb.jar"
+    ]
+}

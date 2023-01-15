@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/public/style.css">
+
+</head>
+<body>
+    
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <a href="/signin"><h2 class="inactive underlineHover"> S'identifier </h2></a>
+      <h2 class="active">S'incrire </h2>
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="/public/user.png" style="height: 5%;width: 5%;">
+        <script src="/public/script.js"></script>
+
+      </div>
+  
+      <!-- Login Form -->
+      <form action="/signup" method="post">
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="Nom d'utilisateur">
+        <input type="password" id="password" class="fadeIn third" name="mdp" placeholder="Mot de passe">
+        <input type="password" id="cpassword" class="fadeIn third" name="cmdp" placeholder="Confirmation du mot de passe">
+        <input type="submit" id="submitButton" class="fadeIn fourth" value="Connexion">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Mot de passe oublié?</a>
+        <span style="color: red;display: block;"> <%=error2%> </span>
+      </div>
+  
+    </div>
+  </div>
+
+  <script>
+    var mdp = document.getElementById('password');
+        var confirm = document.getElementById("cpassword");
+
+        var confirmButton = document.getElementById("submitButton");
+
+        window.addEventListener('input', (e) => {
+
+            console.log(mdp.value, confirm.value)
+            if(mdp.value !== confirm.value){
+                confirmButton.disabled = true;
+            }else{
+                confirmButton.disabled = false; 
+            }
+        })
+  </script>
+</body>
+</html>
