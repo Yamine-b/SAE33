@@ -5,8 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PlantaNet</title>
+    <link rel="stylesheet" href="/public/style-graph.css">
 </head>
 <body>
+    <div class="logo">
+        <img src="/public/Logo3.png" style="width: 20%;height: 20%;">
+    </div>
+
+    <p id="param">
+        <%=labels%>
+    </p>
+
+    <p id="param2">
+        <%=temperatures%>
+    </p>
+
+    <p id="param">
+        <%=labels%>
+    </p>
+
+    <p id="param3">
+        <%=humidite%>
+    </p>
+
+    <p id="param">
+        <%=labels%>
+    </p>
+
+    <p id="param4">
+        <%=luminosite%>
+    </p>
+
+
+    <canvas id="temperatureChart" width="600" height="400"></canvas>
+    <link rel="stylesheet" href="/public/chart.js">
+    
+
     
 </body>
 </html>

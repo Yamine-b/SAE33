@@ -30,28 +30,6 @@ void setup() {
 }
  
 void loop() {
-  // Recupere la temperature et l'humidite du capteur et l'affiche
-  // sur le moniteur serie
-  //Serial.print(String(dht.readTemperature()));
-  //delay(3000);
-  //Serial.print(String(dht.readHumidity()));
-
-  // En mesurant la tension sur la broche A1 on recupere la luminosité de la photoressitance
-  // et l'affiche sur le moniteur serie
-  //value = analogRead(LDR);
-  //Serial.println(String(value));
-
-  
-  // Attend 10 secondes avant de reboucler
-  //delay(1000);
-  //Serial.print(String(dht.readTemperature()) + "/" + String(dht.readHumidity()) + "/" + String(analogRead(LDR)));
-  ///Serial.print("");
-  //Serial.println(String(dht.readTemperature()));
-  //delay(5000);
-//   Serial.print(String(dht.readHumidity()));
-//   delay(5000);
-//   Serial.print(analogRead(LDR));
-//   delay(5000);
 
   // Recupere la temperature et l'humidite du capteur
   float temperature = dht.readTemperature();

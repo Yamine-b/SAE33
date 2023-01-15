@@ -1,81 +1,72 @@
-import com.fazecast.jSerialComm.*;
-import java.sql.*;
-import java.util.LinkedList.*;
-import java.util.LinkedList;
-
-import javax.print.PrintException;
-
-//import java.lang.String.split;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import com.fazecast.jSerialComm.SerialPort;
 
 public class Serveur {
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-        // Ouvrir le port COM4
+
+    public static void main(String[] args) throws IOException, SQLException {
+        // Récupération du port série COM3
         SerialPort comPort = SerialPort.getCommPort("COM3");
+        // Configuration du port série
+        comPort.setBaudRate(9600);
+        comPort.setNumDataBits(8);
+        comPort.setNumStopBits(SerialPort.ONE_STOP_BIT);
+        comPort.setParity(SerialPort.NO_PARITY);
+
+        // Ouverture du port série
         comPort.openPort();
-        comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 100, 0);
-        int nbbytes = comPort.bytesAvailable();
-        byte[] readBuffer = new byte[16];
-        int numRead = comPort.readBytes(readBuffer, readBuffer.length);
-        String d = new String(readBuffer);
-        LinkedList<String> data = new LinkedList<String>();
-        try {
-            for (int i = 0; i < 1; i++) {
-                data.add(d);
-                for (String e : data) {
-                    if (e.matches("^\\d+.?\\d*")) {
-                        System.out.println("Valeur : " + e);
-                    }
-                }
-            }
 
-            System.out.println(data);
-        } catch (Exception e) {
-            // TODO: handle exception
+        // Lecture des données de l'Arduino
+        while (comPort.bytesAvailable() == 0) {
         }
+        InputStream in = comPort.getInputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+        String data = reader.readLine();
+        System.out.println("Données reçues: " + data);
+        String[] values = data.split(";");
+        System.out.println("Nombre de données: " + values.length);
 
-        System.out.println(data);
-        // try {
-        // // Lire les données du port COM4
-        // while (nbbytes == 0) {
-        // Thread.sleep(50);
-        // nbbytes = comPort.bytesAvailable();
-        // }
-        // // des octets sont arrivés
-        // do {
-        // nbbytes = comPort.bytesAvailable();
-        // Thread.sleep(200);
-        // System.out.println("bloqué");
-        // System.out.println(comPort.bytesAvailable());
-        // } while (nbbytes != 0);
-        // {
+        float temperature = Float.parseFloat(values[0]);
+        float humidity = Float.parseFloat(values[1]);
+        int light = Integer.parseInt(values[2]);
 
-        // // Fin de transmission data
-        // try {
-        // byte[] readBuffer = new byte[2048];
-        // int numRead = comPort.readBytes(readBuffer, readBuffer.length);
-        // String data = new String(readBuffer);
+        // Affichage des données
+        System.out.println("Temperature: " + temperature + "°C");
+        System.out.println("Humidity: " + humidity + "%");
+        System.out.println("Light: " + light);
+        // Fermeture du port série
+        comPort.closePort();
+        insertDataToDb(temperature, humidity, light);
 
-        // // String[] data_array= data.split("/", data);
+    }
 
-        // // data_array[0]
+    public static void insertDataToDb(float temperature, float humidity, int light) throws SQLException {
 
-        // // float data_array[0] = Float.parseFloat(data_array[0]); // convertir les
-        // // données en entier
-
-        // // Fermer le port COM4
-        // System.out.println(data);
-        // comPort.closePort();
-        // } catch (Exception e) {
-
-        // }
-
-        // }
-
-        // } catch (Exception e) {
-
-        // }
+        if (temperature > 10 && temperature < 30) {
+            // Connexion à la base de données
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/SAE33", "root",
+                    "");
+            // Préparation de la requête d'insertion
+            PreparedStatement statement = connection
+                    .prepareStatement(
+                            "INSERT INTO donnee (Temperature, Humidite, Luminosite, date) VALUES (?, ?, ?, ?)");
+            statement.setFloat(1, temperature);
+            statement.setFloat(2, humidity);
+            statement.setInt(3, light);
+            statement.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
+            // Exécution de la requête
+            statement.executeUpdate();
+            // Fermeture de la connexion
+            connection.close();
+        } else {
+            System.out.println("La temprérature est erroné !");
+        }
     }
 }

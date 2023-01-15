@@ -18,14 +18,30 @@ app.get('/', function(req, res) {
 });
 
 app.get('/graph', function(req, res) {
-  res.render('page/graph', {});
-});
+  // Récupération des données de température depuis la base de données
+  db.query("SELECT * FROM donnee", function (err, result) {
+    if (err) throw err;
 
+    // Conversion des données en format JSON
+    var data = JSON.parse(JSON.stringify(result));
+
+    // Récupération des labels (dates) et des données (températures)
+    var labels = data.map(function(item) { return item.date });
+    var temperatures = data.map(function(item) { return item.Temperature });
+    var humidite = data.map(function(item) { return item.Humidite });
+    var luminosite = data.map(function(item) { return item.Luminosite });
+    res.render('page/graph', {
+      labels: labels,
+      temperatures: temperatures,
+      humidite: humidite,
+      luminosite:luminosite
+    });
+  });
+});
 app.get('/signin', function(req, res) {
-  res.render('page/signin',{error1:"sg"});
+  res.render('page/signin',{error1:""});
 });
 app.post('/signin', function(req, res){
-  console.log(req.body);
     var login = req.body.login;
     var mdp = req.body.mdp;
             db.query(`SELECT * FROM users where login='${login}' and mdp='${mdp}'`,(err,rep) =>
@@ -34,7 +50,7 @@ app.post('/signin', function(req, res){
             if(data.length != 0)
               {res.redirect('/graph');}
             else{
-              res.render('page/singin',{error1:"Le nom d'utilisateur ou le mot de passe sont incrorrects !"});
+              res.render('page/signin',{error1:"Le nom d'utilisateur ou le mot de passe sont incrorrects !"});
           }})
 
        

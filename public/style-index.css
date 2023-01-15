@@ -1,0 +1,68 @@
+
+    html {
+        /*background: rgb(125,180,58);
+        background: linear-gradient(90deg, rgba(125,180,58,1) 0%, rgba(99,253,29,1) 50%, rgba(69,252,95,1) 100%); */
+        background-image: url(leaf.jpg);
+        background-size: cover;
+    }
+    h1 {
+        padding-top: 15%; 
+        font-family: "Georgia", serif;
+        text-align: center; /* centre le texte */
+        color: #fff; /* met la couleur du texte en blanc */
+        }
+  
+    body {
+        color: #eeeeee;
+        font-family: "Georgia", serif;
+        font-size: 16px;
+    }
+    .logo{
+        text-align: center;
+        margin-bottom: -100px;
+    }
+    .wrapper {
+        margin: 80px auto;
+        text-align: center;
+        width: 100%;
+        position: relative;
+    }
+    .button {
+        padding: 15px 100px;
+        margin: 10px 20px;
+        color: rgb(255, 255, 255);
+        font-family: "Georgia", serif;
+        text-transform: uppercase;
+        text-align: center;
+        position: relative;
+        text-decoration: none;
+        display: inline-block;
+        border: 1px solid;
+        border-radius: 10px;
+    }
+    .button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        -webkit-transform: scaleY(0.1);
+        transform: scaleY(0.1);
+        transition: all 0.4s;
+    }
+    .button:hover {
+        color: #166e00;
+    }
+    .button:hover::before {
+        opacity: 1;
+        background-color: #ffffff;
+        border-radius: 10px;
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+        transition: -webkit-transform 0.6s cubic-bezier(0.08, 0.35, 0.13, 1.02), opacity 0.4s;
+        transition: transform 0.6s cubic-bezier(0.08, 0.35, 0.13, 1.02), opacity;
+    }
+

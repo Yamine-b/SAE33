@@ -1,0 +1,8 @@
+html {
+    background: rgb(125,180,58);
+    background: linear-gradient(90deg, rgba(125,180,58,1) 0%, rgba(99,253,29,1) 50%, rgba(69,252,95,1) 100%); 
+}
+.logo{
+    text-align: center;
+    margin-bottom: -100px;
+}
